@@ -1,8 +1,8 @@
 ---
 title: 记仇小本本
 date: 2018-11-6
-update: 2018-11-24
-tages: [Requests,BeautifulSoup,func_timeout]
+update: 2018-12-5
+tages: [Requests,BeautifulSoup,func_timeout,unescape()]
 ---
 
 ## Requests 返回 403 Forbidden 页面
@@ -216,3 +216,39 @@ tages: [Requests,BeautifulSoup,func_timeout]
 * **Ghost work**
 
   requests 请求为何会在中间卡死尚未得知。
+ 
+## Python 实现 JavaScript unescape() 函数功能
+
+- **Date**：2018-11-27
+
+- **Text**
+
+  JavaScript escape() 函数可对字符串进行编码，这样就可以在所有的计算机上读取该字符串。一般编码后形式如下：
+
+  ```javascript
+  > escape("Visit W3School!")
+  'Visit%20W3School%21'
+  > escape("你好!")
+  '%u4F60%u597D%21'
+  ```
+
+  对 escape() 编码的字符串可以使用 unescape() 进行解码。而在爬虫中就有必要使用 Python 实现 unescape() 函数功能。unescape() 函数的工作原理：
+
+  > 通过找到形式为 %xx 和 %uxxxx 的字符序列（x 表示十六进制的数字），用 Unicode 字符 \u00xx 和 \uxxxx 替换这样的字符序列进行解码。
+
+  Python 实现的一个 Demo 如下：
+
+  ```python
+  >>> import re
+  >>> quoted = 'Visit%20W3School%21'
+  >>> re.sub(r'(%u([a-fA-F0-9]{4}))|(%([a-fA-F0-9]{2}))',lambda m: chr(int(m.group(2) or m.group(4), 16)), quoted)
+  'Visit W3School!'
+  >>> quoted = '%u4F60%u597D%21'
+  >>> re.sub(r'(%u([a-fA-F0-9]{4}))|(%([a-fA-F0-9]{2}))',lambda m: chr(int(m.group(2) or m.group(4), 16)), quoted)
+  '你好!'
+  ```
+
+- **Reference**
+
+  - http://www.w3school.com.cn/js/jsref_unescape.asp
+  - https://stackoverflow.com/questions/23158822/javascript-unescape-vs-python-urllib-unquote
