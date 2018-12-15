@@ -2,7 +2,7 @@
 title: 记仇小本本
 date: 2018-11-6
 update: 2018-12-5
-tages: [Requests,BeautifulSoup,func_timeout,unescape()]
+tags: [Requests,BeautifulSoup,func_timeout,unescape()]
 ---
 
 ## Requests 返回 403 Forbidden 页面
