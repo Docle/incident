@@ -1,8 +1,8 @@
 ---
 title: 记仇小本本
 date: 2018-12-15
-update: 2018-12-15
-tags: [re.split,re.sub]
+update: 2018-12-27
+tags: [re.split,re.sub,Requests]
 
 ---
 
@@ -56,3 +56,40 @@ tags: [re.split,re.sub]
 
     `\s` 可以匹配任意空白字符，甚至包括 `\xa0` 和 `\u3000` 。
 
+## Requests 设定 timeout 参数防止程序失去响应
+
+- **Date**: 2018-12-27
+
+- **Problem**
+
+  在十一月的一个笔记 [Python 超时装饰器 func_timeout](https://github.com/Docle/incident/blob/master/2018-11-incidents.md#python-%E8%B6%85%E6%97%B6%E8%A3%85%E9%A5%B0%E5%99%A8-func_timeout) 中提到了 requests 的一个失去响应的问题。
+
+- **Solution**
+
+  最近查看 request 文档的时候发现了 `timeout` 参数，文档说明如下：
+
+  > 你可以告诉 requests 在经过以 `timeout` 参数设定的秒数时间之后停止等待响应。基本上所有的生产代码都应该使用这一参数。如果不使用，你的程序可能会永远失去响应
+
+  因为在生产环境中一直使用的是封装好的方法而忽略了在使用原始 request 方法时使用 `timeout` 参数，故而程序再运行一段时间后会因为发生服务器无响应失去响应的情况。
+
+  修改原来的示例代码如下：
+
+  ```python
+  import requests
+  
+  url = 'https://www.jobui.com'
+  headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+  try:
+      r = requests.get(url, headers=headers, timeout=100)
+  except requests.exceptions.Timeout:
+      print('time out')
+  except Exception as _e:
+      print(_e)
+  else:
+      print(r.status_code)
+  ```
+
+- **Reference**
+
+  http://docs.python-requests.org/zh_CN/latest/user/quickstart.html#id10
+ 
