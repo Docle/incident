@@ -38,7 +38,7 @@ tags: [re.split,re.sub,Requests]
     'itishardtodoitwithreplace'
     ```
 
-    作为一个 Python 程序员怎么能忍受如此丑陋的写法呢，`re.sbu()` 的实现就优雅的多了：
+    作为一个 Python 程序员怎么能忍受如此丑陋的写法呢，`re.sub()` 的实现就优雅的多了：
 
     ```python
     >>> s = 're.sub is\ra\tgraceful method\n'
@@ -70,7 +70,7 @@ tags: [re.split,re.sub,Requests]
 
   > 你可以告诉 requests 在经过以 `timeout` 参数设定的秒数时间之后停止等待响应。基本上所有的生产代码都应该使用这一参数。如果不使用，你的程序可能会永远失去响应
 
-  因为在生产环境中一直使用的是封装好的方法而忽略了在使用原始 request 方法时使用 `timeout` 参数，故而程序再运行一段时间后会因为发生服务器无响应失去响应的情况。
+  因为在生产环境中一直使用的是封装好的方法而忽略了在使用原始 request 方法时使用 `timeout` 参数，故而程序在运行一段时间后会发生因为服务器无响应而失去响应的情况。
 
   修改原来的示例代码如下：
 
