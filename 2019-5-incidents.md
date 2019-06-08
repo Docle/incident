@@ -2,7 +2,6 @@
 title: 记仇小本本
 date: 2019-5-31
 tags: [urlencode]
-
 ---
 
 ## 请求中带字典参数的编码
@@ -117,7 +116,7 @@ tags: [urlencode]
   from urllib.parse import urlencode
   
   params = {
-      "bw": {
+      "bw": json.dumps({
           "taxML": {
               "head": {
                   "gid": "311085A116185FEFE053C2000A0A5B63",
@@ -133,7 +132,7 @@ tags: [urlencode]
                   "captcha": 'captcha',
               }
           },
-      },
+      }),
       "gdslxDm": 1,
   }
   print(urlencode(params))
