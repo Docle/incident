@@ -215,7 +215,9 @@ tags: [Requests,BeautifulSoup,func_timeout,unescape()]
 
 * **Ghost work**
 
-  requests 请求为何会在中间卡死尚未得知。
+  ~~requests 请求为何会在中间卡死尚未得知。~~
+  
+  已解决，参考：https://2.python-requests.org//zh_CN/latest/user/quickstart.html#id10
  
 ## Python 实现 JavaScript unescape() 函数功能
 
