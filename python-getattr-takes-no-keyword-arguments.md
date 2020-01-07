@@ -30,7 +30,7 @@
   由于 Python 的底层实现是 C 语言，许多内置函数和方法实际上不支持关键字参数。所以，尽管文档说明中`getattr()`的第三个参数名称为`default`，该函数也必须使用位置参数。若要实现`pertial()`的效果可以使用匿名函数
 
   ```python
-  lamba name: getattr(ins, name, None)
+  lambda name: getattr(ins, name, None)
   ```
 
   或自行封装函数
